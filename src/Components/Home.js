@@ -13,28 +13,30 @@ function Home (){
           ENJOY YOUR STAY!
         </IntroText>
       </IntroContainer>
-      <ImageContainer>
-        <IntroImage>
-        </IntroImage>
-      </ImageContainer>
     </IntroSpace>
   )
 };
 
 export default Home;
 
-
 const IntroSpace = styled.div`
-    height:45vh;
-    width:100vw;
+    height:40%;
+    width:100%;
     display:flex;
+    background-color:#EFEFD0;
+    justify-content:center;
+    alight-items: center;
+
 `
 
 const IntroContainer = styled.div`
+    margin-top:10vh;
+    height: 40%;
     width: 50%;
     background-color:#004e89;
-    border-radius: 5px 40% 5px;
+    border-radius: 10px;
     display:flex;
+    justify-content:center;
     align-items:center;
     flex-direction:row;
 `
