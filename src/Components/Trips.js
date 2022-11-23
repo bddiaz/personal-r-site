@@ -1,20 +1,31 @@
-import React from "react";
 import styled from "styled-components";
 import { Route, Routes, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Trips() {
+  const navigate = useNavigate();
   return (
     <BodySpace>
       <div>
         <h1> Trips </h1>
         <StyledList>
           <li>
-            <Link to="trip1"> Trip 1</Link>
+            <p> Trip 1</p>
           </li>
           <li>
-            <Link to="trip2"> Trip 2</Link>
+            <p> Trip 2</p>
           </li>
         </StyledList>
+        <button
+          type="button"
+          onClick={() => {
+            navigate("/trips/newTrip");
+          }}
+        >
+          {" "}
+          Add a trip
+        </button>
       </div>
     </BodySpace>
   );

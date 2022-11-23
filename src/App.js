@@ -6,8 +6,11 @@ import styled from "styled-components";
 import { Route, Routes, Link } from "react-router-dom";
 import Trips from "./Components/Trips.js";
 import Trip from "./Components/Trip.js";
+import { useState, useEffect } from "react";
+import TripForm from "./Components/TripForm.js";
 
 function App() {
+  const [trips, setTrips] = useState([{ city: "Chicago " }]);
   return (
     <>
       <Container>
@@ -25,6 +28,7 @@ function App() {
               path="trip2"
               element={<Trip city="New York" distance={"20 miles"} />}
             />
+            <Route path="newTrip" element={<TripForm />}></Route>
           </Route>
         </Routes>
       </Container>
