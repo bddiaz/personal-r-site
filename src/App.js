@@ -8,6 +8,7 @@ import Trips from "./Components/Trips.js";
 import Trip from "./Components/Trip.js";
 import { useState, useEffect } from "react";
 import TripForm from "./Components/TripForm.js";
+import Christmas from "./Components/Christmas/Christmas.js";
 
 function App() {
   const [trips, setTrips] = useState([{ city: "Chicago " }]);
@@ -18,6 +19,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Christmas" element={<Christmas />} />
           <Route path="trips">
             <Route index={true} element={<Trips />} />
             <Route

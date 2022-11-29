@@ -8,9 +8,16 @@ function Header() {
       <HeaderSpace>
         <HeaderNav>
           <NavItem>
-            <Link to="/"> Home </Link>
+            <Link style={{ textDecoration: "none" }} to="/">
+              {" "}
+              Home{" "}
+            </Link>
           </NavItem>
-          <NavItem>About</NavItem>
+          <NavItem>
+            <Link style={{ textDecoration: "none" }} to="/Christmas">
+              Christmas{" "}
+            </Link>
+          </NavItem>
           <NavItem>Projects</NavItem>
         </HeaderNav>
       </HeaderSpace>
