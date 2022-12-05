@@ -9,31 +9,36 @@ import Trip from "./Components/Trip.js";
 import { useState, useEffect } from "react";
 import TripForm from "./Components/TripForm.js";
 import Christmas from "./Components/Christmas/Christmas.js";
+import Signup from "./Components/Login/Signup.js";
+import { AuthProvider } from "./Contexts/AuthContext.js";
 
 function App() {
   const [trips, setTrips] = useState([{ city: "Chicago " }]);
   return (
     <>
-      <Container>
-        <Header />
+      <AuthProvider>
+        <Container>
+          <Header />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Christmas" element={<Christmas />} />
-          <Route path="trips">
-            <Route index={true} element={<Trips />} />
-            <Route
-              path="trip1"
-              element={<Trip city="Chicago" distance={"100 miles"} />}
-            />
-            <Route
-              path="trip2"
-              element={<Trip city="New York" distance={"20 miles"} />}
-            />
-            <Route path="newTrip" element={<TripForm />}></Route>
-          </Route>
-        </Routes>
-      </Container>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="Signup" element={<Signup />} />
+            <Route path="Christmas" element={<Christmas />} />
+            <Route path="trips">
+              <Route index={true} element={<Trips />} />
+              <Route
+                path="trip1"
+                element={<Trip city="Chicago" distance={"100 miles"} />}
+              />
+              <Route
+                path="trip2"
+                element={<Trip city="New York" distance={"20 miles"} />}
+              />
+              <Route path="newTrip" element={<TripForm />}></Route>
+            </Route>
+          </Routes>
+        </Container>
+      </AuthProvider>
     </>
   );
 }

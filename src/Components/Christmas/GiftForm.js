@@ -40,6 +40,10 @@ export default function GiftForm(props) {
             <option value="Father"> Father </option>
             <option value="Sister"> Sister</option>
             <option value="Brother"> Brother</option>
+            <option value="Uncle"> Uncle</option>
+            <option value="Aunt"> Brother</option>
+            <option value="Friend"> Friend</option>
+            <option value="Special Other"> Special other</option>
           </select>
         </StyledInput>
 
