@@ -6,7 +6,7 @@ import { useAuth } from "../../Contexts/AuthContext.js";
 function Login(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { currentUser, login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

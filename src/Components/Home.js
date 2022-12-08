@@ -5,13 +5,14 @@ import { useAuth } from "../Contexts/AuthContext.js";
 
 function Home() {
   const navigate = useNavigate();
-  const currentUser = useAuth();
+  const { currentUser } = useAuth();
 
   return (
     <>
       <IntroSpace>
         <IntroContainer
           onClick={() => {
+            console.log(currentUser.email);
             navigate("/trips");
           }}
         >

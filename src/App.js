@@ -12,20 +12,35 @@ import Christmas from "./Components/Christmas/Christmas.js";
 import Signup from "./Components/Login/Signup.js";
 import { AuthProvider } from "./Contexts/AuthContext.js";
 import Login from "./Components/Login/Login.js";
+import PrivateRoute from "./Components/PrivateRoute.js";
 
 function App() {
   const [trips, setTrips] = useState([{ city: "Chicago " }]);
   return (
     <>
-      <AuthProvider>
-        <Container>
+      <Container>
+        <AuthProvider>
           <Header />
 
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            />
             <Route path="Signup" element={<Signup />} />
             <Route path="Login" element={<Login />} />
-            <Route path="Christmas" element={<Christmas />} />
+            <Route
+              path="Christmas"
+              element={
+                <PrivateRoute>
+                  <Christmas />
+                </PrivateRoute>
+              }
+            />
             <Route path="trips">
               <Route index={true} element={<Trips />} />
               <Route
@@ -39,8 +54,8 @@ function App() {
               <Route path="newTrip" element={<TripForm />}></Route>
             </Route>
           </Routes>
-        </Container>
-      </AuthProvider>
+        </AuthProvider>
+      </Container>
     </>
   );
 }
