@@ -11,6 +11,7 @@ import TripForm from "./Components/TripForm.js";
 import Christmas from "./Components/Christmas/Christmas.js";
 import Signup from "./Components/Login/Signup.js";
 import { AuthProvider } from "./Contexts/AuthContext.js";
+import Login from "./Components/Login/Login.js";
 
 function App() {
   const [trips, setTrips] = useState([{ city: "Chicago " }]);
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="Signup" element={<Signup />} />
+            <Route path="Login" element={<Login />} />
             <Route path="Christmas" element={<Christmas />} />
             <Route path="trips">
               <Route index={true} element={<Trips />} />

@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../Contexts/AuthContext.js";
 
 function Home() {
   const navigate = useNavigate();
+  const currentUser = useAuth();
 
   return (
     <>
@@ -13,7 +15,7 @@ function Home() {
             navigate("/trips");
           }}
         >
-          <p> Click this box to see your trips! </p>
+          <p> Hi {currentUser.email} Click this box to see your trips! </p>
         </IntroContainer>
       </IntroSpace>
     </>

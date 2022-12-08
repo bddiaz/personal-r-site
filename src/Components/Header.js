@@ -1,8 +1,24 @@
-import { useState, useEffect } from "react";
+import { React, useRef, useState } from "react";
+import { Button } from "react-bootstrap";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../Contexts/AuthContext.js";
 
 function Header() {
+  const [error, setError] = useState("");
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    setError("");
+    try {
+      await logout();
+      navigate("/Login");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <HeaderContainer>
       <HeaderSpace>
@@ -19,6 +35,7 @@ function Header() {
             </Link>
           </NavItem>
           <NavItem>Projects</NavItem>
+          <Button onClick={handleLogout}>Log Out</Button>
         </HeaderNav>
       </HeaderSpace>
     </HeaderContainer>

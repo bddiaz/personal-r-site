@@ -1,30 +1,26 @@
 import { React, useRef, useState } from "react";
 import { Card, Form, Button, Container, Alert } from "react-bootstrap";
-import { useAuth } from "../../Contexts/AuthContext.js";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../Contexts/AuthContext.js";
 
-function Signup(props) {
+function Login(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords Do Not Match");
-    }
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
     } catch (error) {
       console.log(error);
-      setError("failed to create account");
+      setError("failed to sign in");
     }
     setLoading(false);
   }
@@ -38,7 +34,7 @@ function Signup(props) {
         <div className="w-100" style={{ maxWidth: "400px" }}>
           <Card>
             <Card.Body>
-              <h2> Sign Up</h2>
+              <h2> Log In</h2>
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -57,26 +53,18 @@ function Signup(props) {
                     required
                   ></Form.Control>
                 </Form.Group>
-                <Form.Group>
-                  <Form.Label>Password Confirm</Form.Label>
-                  <Form.Control
-                    type="password"
-                    ref={passwordConfirmRef}
-                    required
-                  ></Form.Control>
-                </Form.Group>
                 <Button disabled={loading} type="submit">
-                  Sign Up
+                  Log In
                 </Button>
               </Form>
             </Card.Body>
           </Card>
           <div>
-            Already have an account? <Link to="/Login"> Log In </Link>
+            Need an Account? <Link to="/Signup">Sign Up</Link>
           </div>
         </div>
       </Container>
     </>
   );
 }
-export default Signup;
+export default Login;
