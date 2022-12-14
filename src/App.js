@@ -13,15 +13,16 @@ import Signup from "./Components/Login/Signup.js";
 import { AuthProvider } from "./Contexts/AuthContext.js";
 import Login from "./Components/Login/Login.js";
 import PrivateRoute from "./Components/PrivateRoute.js";
+import PupusaHome from "./Components/Sales/PupusaHome.js";
 
 function App() {
   const [trips, setTrips] = useState([{ city: "Chicago " }]);
+  const [sale, setSale] = useState(false);
   return (
     <>
       <Container>
         <AuthProvider>
-          <Header />
-
+          {sale && <Header />}
           <Routes>
             <Route
               path="/"
@@ -41,6 +42,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="pupusas" element={<PupusaHome />} />
             <Route path="trips">
               <Route index={true} element={<Trips />} />
               <Route
