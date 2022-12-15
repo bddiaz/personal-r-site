@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavBar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function PupusaHome(props) {
   return (
@@ -8,7 +8,19 @@ function PupusaHome(props) {
       <HeaderContainer>
         <LogoContainer> logo will go here</LogoContainer>
 
-        <NavContainer>nav bar will go here</NavContainer>
+        <NavContainer>
+          <Nav>
+            <NavItem>
+              <StyledNavLink to="/pupusas"> Menu </StyledNavLink>
+            </NavItem>
+            <NavItem>
+              <StyledNavLink>About Us </StyledNavLink>
+            </NavItem>
+            <NavItem>
+              <StyledNavLink> Questions </StyledNavLink>
+            </NavItem>
+          </Nav>
+        </NavContainer>
 
         <OrderContainer> order button goes</OrderContainer>
       </HeaderContainer>
@@ -19,10 +31,21 @@ function PupusaHome(props) {
 }
 export default PupusaHome;
 
+const StyledNavLink = styled(Link)`
+  text-decoration: none;
+  color: #6b544a;
+  font-family: Sans-serif;
+  font-size: 23px;
+
+  &:hover {
+    color: #6b544a;
+  }
+`;
+
 const HeaderContainer = styled.div`
   height: 10vh;
   width: 100%;
-  background-color: #3b86f2;
+  background-color: #f7f5f4;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -41,7 +64,22 @@ const OrderContainer = styled.div`
 `;
 
 const BodyContainer = styled.div`
-  background-color: #f3f6fc;
+  background-color: #f7f2dd;
   height: 90vh;
   width: 100%;
+`;
+const Nav = styled.nav`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const NavItem = styled.p`
+  border-radius: 5px;
+  padding: 4px;
+  &:hover {
+    background-color: #f7f2dd;
+  }
 `;
