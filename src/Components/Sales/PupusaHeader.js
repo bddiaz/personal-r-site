@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-function PupusaHome(props) {
+function PupusaHeader(props) {
   return (
     <>
       <HeaderContainer>
@@ -22,21 +22,15 @@ function PupusaHome(props) {
           </Nav>
         </NavContainer>
 
-        <OrderContainer>
-          {" "}
-          <OrderButton type="button">Order </OrderButton>
-        </OrderContainer>
+        <OrderContainer>your order goes here</OrderContainer>
       </HeaderContainer>
-
-      <BodyContainer></BodyContainer>
     </>
   );
 }
-export default PupusaHome;
+export default PupusaHeader;
 
 const OrderButton = styled.button`
   width: 70%;
-  height: 40%;
   background-color: red;
   text-align: center;
   text-decoration: none;
@@ -76,11 +70,6 @@ const OrderContainer = styled.div`
   width: 20%;
 `;
 
-const BodyContainer = styled.div`
-  background-color: #f7f2dd;
-  height: 90vh;
-  width: 100%;
-`;
 const Nav = styled.nav`
   width: 100%;
   height: 100%;
