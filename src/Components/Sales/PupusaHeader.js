@@ -22,7 +22,9 @@ function PupusaHeader(props) {
           </Nav>
         </NavContainer>
 
-        <OrderContainer>your order goes here</OrderContainer>
+        <OrderContainer>
+          <OrderButton type="button">ORDER NOW!</OrderButton>
+        </OrderContainer>
       </HeaderContainer>
     </>
   );
@@ -31,11 +33,13 @@ export default PupusaHeader;
 
 const OrderButton = styled.button`
   width: 70%;
-  background-color: red;
+  color: #6b544a;
+  background-color: #f7f2dd;
   text-align: center;
   text-decoration: none;
-  font-size: 30px;
+  font-size: 25px;
   display: inline-block;
+  border-radius: 12px;
 `;
 
 const StyledNavLink = styled(Link)`
@@ -68,6 +72,9 @@ const NavContainer = styled.div`
 
 const OrderContainer = styled.div`
   width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Nav = styled.nav`
