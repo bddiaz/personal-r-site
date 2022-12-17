@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Logo from "./pngegg.png";
 
 function PupusaHeader(props) {
   return (
     <>
       <HeaderContainer>
-        <LogoContainer> logo will go here</LogoContainer>
+        <LogoContainer>
+          <div className="imgCnt">
+            <img src={Logo} width="70" height="60" alt="" />
+          </div>
+
+          <StyledName> Las Pupusas Marias</StyledName>
+        </LogoContainer>
 
         <NavContainer>
           <Nav>
@@ -23,7 +30,7 @@ function PupusaHeader(props) {
         </NavContainer>
 
         <OrderContainer>
-          <OrderButton type="button">ORDER NOW!</OrderButton>
+          <OrderButton type="button">YOUR CART</OrderButton>
         </OrderContainer>
       </HeaderContainer>
     </>
@@ -31,43 +38,69 @@ function PupusaHeader(props) {
 }
 export default PupusaHeader;
 
+const StyledName = styled.div`
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 20px;
+  // padding: 4%;
+  width: 50%;
+  // background-color: blue;
+`;
+
 const OrderButton = styled.button`
   width: 70%;
-  color: #6b544a;
-  background-color: #f7f2dd;
+  background-color: #ae0103;
   text-align: center;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 15px;
+  font-family: "Josefin Sans", sans-serif;
   display: inline-block;
   border-radius: 12px;
+  color: #f7f2dd;
+  border: none;
+  padding: 2px;
+  &:hover {
+    transform: scale(105%);
+    transition: all 0.1s;
+  }
 `;
 
 const StyledNavLink = styled(Link)`
   text-decoration: none;
-  color: #6b544a;
-  font-family: Sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-size: 23px;
-
-  &:hover {
-    color: #6b544a;
-  }
 `;
 
 const HeaderContainer = styled.div`
-  height: 10vh;
+  height: 80px;
   width: 100%;
   background-color: #f7f5f4;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  color: #ab5911;
+  a {
+    color: #ab5911;
+  }
 `;
 
 const LogoContainer = styled.div`
   width: 20%;
+  height: 100%;
+  // padding-left: 3%;
+  display: flex;
+  justify-content: space-evenly;
+  vertical-align: center;
+  // background-color: red;
+  align-items: center;
 `;
 
 const NavContainer = styled.div`
   width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-color: red;
 `;
 
 const OrderContainer = styled.div`
@@ -75,20 +108,26 @@ const OrderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  // background-color: red;
 `;
 
-const Nav = styled.nav`
+const Nav = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-evenly;
+  // background-color: purple;
 `;
 
-const NavItem = styled.p`
+const NavItem = styled.div`
   border-radius: 5px;
+  // background-color: blue;
   padding: 4px;
   &:hover {
-    background-color: #f7f2dd;
+    background-color: #ae0103;
+    color: #f7f5f4;
+    a {
+      color: #f7f5f4;
+    }
+    transition: all 0.1s;
   }
 `;
