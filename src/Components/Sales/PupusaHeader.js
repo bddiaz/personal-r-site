@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Logo from "./pngegg.png";
+import Logo from "./assets/pngegg.png";
 
 function PupusaHeader(props) {
   return (
