@@ -6,8 +6,8 @@ function MenuItem(props) {
   return (
     <>
       <ItemContainer>
-        <ImageContainer></ImageContainer>
         <ItemDescription>This pupusa is so delicious.</ItemDescription>
+        <ImageContainer></ImageContainer>
       </ItemContainer>
     </>
   );
@@ -20,8 +20,8 @@ const ItemDescription = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  height: 70%;
-  width: 100%;
+  height: 150px;
+  width: 150px;
   background-color: blue;
   background-image: url(${Pupusa});
   background-position: center;
@@ -30,9 +30,10 @@ const ImageContainer = styled.div`
 `;
 
 const ItemContainer = styled.div`
-  background-color: #bf4c0e;
-  height: 40vh;
-  width: 40vh;
+  background-color: blue;
+  display: flex;
+  height: 15vh;
+  width: 50vh;
   border-radius: 8px;
   padding: 3%;
 `;

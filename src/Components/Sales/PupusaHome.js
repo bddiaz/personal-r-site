@@ -55,7 +55,7 @@ const HeroContainer = styled.div`
 `;
 
 const BodyContainer = styled.div`
-  background-color: #f7f2dd;
+  background-color: #f7f5f4;
   height: 90vh;
   width: 100%;
   padding: 1%;

@@ -25,6 +25,14 @@ function Menu(props) {
           title={menuItems[0].title}
           image={menuItems[0].image}
         ></MenuItem>
+        <MenuItem
+          title={menuItems[0].title}
+          image={menuItems[0].image}
+        ></MenuItem>
+        <MenuItem
+          title={menuItems[0].title}
+          image={menuItems[0].image}
+        ></MenuItem>
       </MenuContainer>
     </>
   );
@@ -36,8 +44,10 @@ const MenuContainer = styled.div`
   width: 100%;
   //  background-color: blue;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
   justify-items: center;
   align-items: center;
+  justify-content: space-around;
 `;
