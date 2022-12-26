@@ -5,6 +5,14 @@ import Pupusa1 from "./assets/pupusaItem2.webp";
 import Pupusa2 from "./assets/Loroco-Pupusa.jpg";
 
 function Menu(props) {
+  const [order, setOrder] = useState([
+    { type: "revuelta", quantity: 0, index: 0 },
+    { type: "loroco", quantity: 0, index: 1 },
+    { type: "frijol", quantity: 0, index: 2 },
+    { type: "chicarron", quantity: 0, index: 3 },
+    { type: "jalapeño", quantity: 0, index: 4 },
+    { type: "espinaca", quantity: 0, index: 5 },
+  ]);
   const menuItems = [
     {
       title: "Revuelta",
@@ -81,12 +89,11 @@ export default Menu;
 const MenuContainer = styled.div`
   height: 100%;
   width: 100%;
-  //  background-color: blue;
+  padding: 1%;
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(2, auto);
-  justify-items: center;
-  align-items: center;
-  justify-content: space-around;
+  grid-template-columns: minmax(200px, 800px) minmax(200px, 800px);
+  grid-auto-rows: 200px;
+  justify-content: center;
+  align-content: center;
+  gap: 35px;
 `;

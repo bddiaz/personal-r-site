@@ -3,9 +3,13 @@ import styled from "styled-components";
 import Pupusa from "./assets/pupusaItem2.webp";
 
 function MenuItem(props) {
+  function handleClick() {
+    console.log("you have clicked on an item");
+  }
+
   return (
     <>
-      <ItemContainer>
+      <ItemContainer onClick={handleClick}>
         <DescriptionContainer>
           <ItemTitle>{props.title}</ItemTitle>
           <ItemDescription>{props.description}</ItemDescription>
@@ -21,12 +25,11 @@ export default MenuItem;
 const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  //background-color: blue;
+  height: fit-content;
   width: 70%;
 `;
 const ItemTitle = styled.div`
   font-family: "Josefin Sans", sans-serif;
-  //  background-color: red;
   font-size: 30px;
 `;
 
@@ -39,7 +42,6 @@ const ItemDescription = styled.div`
 const ImageContainer = styled.div`
   height: 150px;
   width: 150px;
-  //background-color: blue;
   background-image: url(${(props) => props.image});
   background-position: center;
   background-repeat: no-repeat;
@@ -51,8 +53,11 @@ const ItemContainer = styled.div`
   font-family: "Josefin Sans", sans-serif;
   display: flex;
   justify-content: space-between;
-  height: fit-content;
-  width: 50vh;
   border-radius: 8px;
   padding: 3%;
+  cursor: pointer;
+  &:hover {
+    scale: 102%;
+    transition: 1s;
+  }
 `;

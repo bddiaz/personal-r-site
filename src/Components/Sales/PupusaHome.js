@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PupusaHeader from "./PupusaHeader.js";
+import PupusaFooter from "./PupusaFooter.js";
 import Banner from "./assets/pupusas1.jpg";
 import Menu from "./PupusaMenu.js";
 
@@ -16,6 +17,7 @@ function PupusaHome(props) {
       <BodyContainer>
         <Menu></Menu>
       </BodyContainer>
+      <PupusaFooter />
     </>
   );
 }
@@ -48,15 +50,15 @@ const HeroContainer = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
-  &:hover {
-    background-size: 102%;
-    transition: background-size 1s;
-  }
+  // &:hover {
+  //   background-size: 102%;
+  //   transition: background-size 1s;
+  // }
 `;
 
 const BodyContainer = styled.div`
   background-color: #f7f5f4;
-  height: 90vh;
+  height: 60vh;
   width: 100%;
   padding: 1%;
 `;
