@@ -4,18 +4,19 @@ import Pupusa from "./assets/pupusaItem2.webp";
 
 function MenuItem(props) {
   function handleClick() {
-    console.log("you have clicked on an item");
+    props.handleClick();
+    console.log(props.itemInfo.index);
   }
 
   return (
     <>
       <ItemContainer onClick={handleClick}>
         <DescriptionContainer>
-          <ItemTitle>{props.title}</ItemTitle>
-          <ItemDescription>{props.description}</ItemDescription>
+          <ItemTitle>{props.itemInfo.title}</ItemTitle>
+          <ItemDescription>{props.itemInfo.description}</ItemDescription>
         </DescriptionContainer>
 
-        <ImageContainer image={props.image}></ImageContainer>
+        <ImageContainer image={props.itemInfo.image}></ImageContainer>
       </ItemContainer>
     </>
   );

@@ -1,21 +1,31 @@
-import React from "react";
+import { React, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PupusaHeader from "./PupusaHeader.js";
 import PupusaFooter from "./PupusaFooter.js";
 import Banner from "./assets/pupusas1.jpg";
 import Menu from "./PupusaMenu.js";
+import ExpandedItem from "./ExpandedItem.js";
 
 function PupusaHome(props) {
+  const [visible, setVisible] = useState(false);
+
+  function handleClick() {
+    setVisible((value) => !value);
+  }
+
   return (
     <>
+      <ExpandedItem visible={visible} handleClick={handleClick}></ExpandedItem>
       <PupusaHeader />
+
       <HeroContainer>
         <HeroText>Pupusas de las hermanas Marias</HeroText>
         <HeroSubText> Hechas en casa </HeroSubText>
       </HeroContainer>
+
       <BodyContainer>
-        <Menu></Menu>
+        <Menu handleClick={handleClick}></Menu>
       </BodyContainer>
       <PupusaFooter />
     </>

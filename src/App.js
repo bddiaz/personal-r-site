@@ -18,6 +18,7 @@ import PupusaHome from "./Components/Sales/PupusaHome.js";
 function App() {
   const [trips, setTrips] = useState([{ city: "Chicago " }]);
   const [sale, setSale] = useState(false);
+
   return (
     <>
       <Container>
