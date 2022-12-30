@@ -6,6 +6,16 @@ function ExpandedItem(props) {
   function handleCloseClick() {
     props.handleCloseSelected();
   }
+
+  function handleAddToCart(count) {
+    const order = {
+      count: count,
+      item: props.info.title,
+      index: props.info.index,
+    };
+    props.handleAddToCart(order);
+    props.handleCloseSelected();
+  }
   return (
     <>
       <ExpandedViewContainer visible={props.visible}>
@@ -26,7 +36,10 @@ function ExpandedItem(props) {
               />
             </ImageContainer>
           </ContentContainer>
-          <OrderBar />
+          <OrderBar
+            price={props.info.price}
+            handleAddToCart={handleAddToCart}
+          />
         </ExpandedItemContainer>
       </ExpandedViewContainer>
     </>
@@ -85,8 +98,9 @@ const TitleContainer = styled.div`
 `;
 
 const ExpandedItemContainer = styled.div`
-  height: 90vh;
-  width: 45%;
+  //height: 90vh;
+  height: 55%;
+  width: 55%;
   padding: 1.5%;
   background-color: #f7f5f4;
   display: flex;

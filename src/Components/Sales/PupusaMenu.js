@@ -11,6 +11,7 @@ function Menu(props) {
       image: menuItems[index].image,
       description: menuItems[index].description,
       index: index,
+      price: menuItems[index].price,
     };
     props.handleItemSelect(info);
   }
@@ -31,36 +32,42 @@ function Menu(props) {
       image: Pupusa1,
       description:
         "Chicharron, queso y frijoles. Mixed (pork, cheese and beans)",
+      price: "$3.00",
     },
     {
       title: "Loroco con Queso",
       index: 1,
       image: Pupusa2,
       description: "Pupusa con loroco y queso",
+      price: "$3.00",
     },
     {
       title: "Frijol con  Queso",
       index: 2,
       image: Pupusa1,
       description: "Pupusa de frijol y queso",
+      price: "$3.00",
     },
     {
       title: "Chicharron con Queso",
       index: 3,
       image: Pupusa2,
       description: "Pupusa con chicharron y queso",
+      price: "$3.00",
     },
     {
       title: "Jalapeño con queso",
       index: 4,
       image: Pupusa1,
       description: "Pupusa con Jalapeño y queso",
+      price: "$3.00",
     },
     {
       title: "Espinaca con Queso",
       index: 5,
       image: Pupusa2,
       description: "Pupusa con espinaca y queso",
+      price: "$3.00",
     },
   ];
 

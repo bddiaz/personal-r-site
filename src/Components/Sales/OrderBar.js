@@ -12,6 +12,11 @@ function OrderBar(props) {
     setCounter((prev) => (counter > 0 ? prev - 1 : 0));
   }
 
+  function handleAddToCart() {
+    props.handleAddToCart(counter);
+    setCounter(0);
+  }
+
   return (
     <OrderBarContainer>
       <CounterContainer>
@@ -19,9 +24,9 @@ function OrderBar(props) {
         <Count>{counter}</Count>
         <CounterButton onClick={handleAdd}>+</CounterButton>
       </CounterContainer>
-      <AddContainer>
+      <AddContainer onClick={handleAddToCart}>
         <AddText> Add to Cart</AddText>
-        <PriceText> $5</PriceText>
+        <PriceText> {props.price}</PriceText>
       </AddContainer>
     </OrderBarContainer>
   );

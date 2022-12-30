@@ -14,7 +14,43 @@ function PupusaHome(props) {
     image: null,
     description: null,
     index: null,
+    price: null,
   });
+
+  const [currentOrder, setCurrentOrder] = useState([
+    { index: 0, quantity: 0, item: "", cost: 0 },
+    { index: 1, quantity: 0, item: "", cost: 0 },
+    { index: 2, quantity: 0, item: "", cost: 0 },
+    { index: 3, quantity: 0, item: "", cost: 0 },
+    { index: 4, quantity: 0, item: "", cost: 0 },
+    { index: 5, quantity: 0, item: "", cost: 0 },
+  ]);
+
+  function handleAddToCart(order) {
+    let copy = currentOrder;
+
+    if (copy[order.index].quantity == 0) {
+      let cost = order.count * 3;
+      copy[order.index] = {
+        index: order.index,
+        item: order.item,
+        quantity: order.count,
+        cost: cost,
+      };
+      cost = 0;
+    } else {
+      let cost = currentOrder[order.index].cost;
+      cost += order.count * 3;
+      copy[order.index] = {
+        index: order.index,
+        item: order.item,
+        quantity: order.count + currentOrder[order.index].quantity,
+        cost: cost,
+      };
+    }
+    setCurrentOrder((prev) => copy);
+    console.log(currentOrder);
+  }
 
   function handleItemSelect(info) {
     setCurrentSelected(info);
@@ -31,6 +67,7 @@ function PupusaHome(props) {
         visible={visible}
         handleCloseSelected={handleCloseSelected}
         info={currentSelected}
+        handleAddToCart={handleAddToCart}
       ></ExpandedItem>
       <PupusaHeader />
 
@@ -74,10 +111,10 @@ const HeroContainer = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
-  // &:hover {
-  //   background-size: 102%;
-  //   transition: background-size 1s;
-  // }
+  &:hover {
+    background-size: 102%;
+    transition: background-size 1s;
+  }
 `;
 
 const BodyContainer = styled.div`

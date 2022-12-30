@@ -14,6 +14,7 @@ function MenuItem(props) {
           <ItemTitle>{props.itemInfo.title}</ItemTitle>
           <ItemDescription>{props.itemInfo.description}</ItemDescription>
         </DescriptionContainer>
+        <Price>{props.itemInfo.price}</Price>
         <ImageContainer>
           <img src={props.itemInfo.image} height="150px" width="150px" alt="" />
         </ImageContainer>
@@ -22,6 +23,16 @@ function MenuItem(props) {
   );
 }
 export default MenuItem;
+
+const Price = styled.div`
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+  //background-color: blue;
+`;
 
 const DescriptionContainer = styled.div`
   display: flex;
