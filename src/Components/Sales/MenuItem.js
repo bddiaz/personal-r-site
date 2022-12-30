@@ -3,20 +3,20 @@ import styled from "styled-components";
 import Pupusa from "./assets/pupusaItem2.webp";
 
 function MenuItem(props) {
-  function handleClick() {
-    props.handleClick();
-    console.log(props.itemInfo.index);
+  function handleItemSelect() {
+    props.handleItemSelect(props.itemInfo.index);
   }
 
   return (
     <>
-      <ItemContainer onClick={handleClick}>
+      <ItemContainer onClick={handleItemSelect}>
         <DescriptionContainer>
           <ItemTitle>{props.itemInfo.title}</ItemTitle>
           <ItemDescription>{props.itemInfo.description}</ItemDescription>
         </DescriptionContainer>
-
-        <ImageContainer image={props.itemInfo.image}></ImageContainer>
+        <ImageContainer>
+          <img src={props.itemInfo.image} height="150px" width="150px" alt="" />
+        </ImageContainer>
       </ItemContainer>
     </>
   );
@@ -41,24 +41,22 @@ const ItemDescription = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  height: 150px;
-  width: 150px;
-  background-image: url(${(props) => props.image});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  background-color: blue;
+  height: fit-content;
+  //object-fit: cover;
+  //background-position: center;
+  //background-repeat: no-repeat;
+  //background-size: 100%;
 `;
 
 const ItemContainer = styled.div`
-  background-color: #ddd7c4;
+  height: fit-content;
+  // background-color: #f0e5dd;
+  border: 1.5px solid black;
   font-family: "Josefin Sans", sans-serif;
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
   padding: 3%;
   cursor: pointer;
-  &:hover {
-    scale: 102%;
-    transition: 1s;
-  }
 `;

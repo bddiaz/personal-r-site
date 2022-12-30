@@ -5,8 +5,14 @@ import Pupusa1 from "./assets/pupusaItem2.webp";
 import Pupusa2 from "./assets/Loroco-Pupusa.jpg";
 
 function Menu(props) {
-  function handleClick() {
-    props.handleClick();
+  function handleItemSelect(index) {
+    const info = {
+      title: menuItems[index].title,
+      image: menuItems[index].image,
+      description: menuItems[index].description,
+      index: index,
+    };
+    props.handleItemSelect(info);
   }
 
   const [order, setOrder] = useState([
@@ -61,12 +67,30 @@ function Menu(props) {
   return (
     <>
       <MenuContainer>
-        <MenuItem itemInfo={menuItems[0]} handleClick={handleClick}></MenuItem>
-        <MenuItem itemInfo={menuItems[1]} handleClick={handleClick}></MenuItem>
-        <MenuItem itemInfo={menuItems[2]} handleClick={handleClick}></MenuItem>
-        <MenuItem itemInfo={menuItems[3]} handleClick={handleClick}></MenuItem>
-        <MenuItem itemInfo={menuItems[4]} handleClick={handleClick}></MenuItem>
-        <MenuItem itemInfo={menuItems[5]} handleClick={handleClick}></MenuItem>
+        <MenuItem
+          itemInfo={menuItems[0]}
+          handleItemSelect={handleItemSelect}
+        ></MenuItem>
+        <MenuItem
+          itemInfo={menuItems[1]}
+          handleItemSelect={handleItemSelect}
+        ></MenuItem>
+        <MenuItem
+          itemInfo={menuItems[2]}
+          handleItemSelect={handleItemSelect}
+        ></MenuItem>
+        <MenuItem
+          itemInfo={menuItems[3]}
+          handleItemSelect={handleItemSelect}
+        ></MenuItem>
+        <MenuItem
+          itemInfo={menuItems[4]}
+          handleItemSelect={handleItemSelect}
+        ></MenuItem>
+        <MenuItem
+          itemInfo={menuItems[5]}
+          handleItemSelect={handleItemSelect}
+        ></MenuItem>
       </MenuContainer>
     </>
   );
@@ -78,9 +102,9 @@ const MenuContainer = styled.div`
   width: 100%;
   padding: 1%;
   display: grid;
-  grid-template-columns: minmax(200px, 800px) minmax(200px, 800px);
-  grid-auto-rows: 200px;
+  grid-template-columns: minmax(100px, 900px) minmax(100px, 900px);
+  //grid-auto-rows: 200px;
   justify-content: center;
   align-content: center;
-  gap: 35px;
+  gap: 30px;
 `;

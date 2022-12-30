@@ -9,14 +9,29 @@ import ExpandedItem from "./ExpandedItem.js";
 
 function PupusaHome(props) {
   const [visible, setVisible] = useState(false);
+  const [currentSelected, setCurrentSelected] = useState({
+    title: null,
+    image: null,
+    description: null,
+    index: null,
+  });
 
-  function handleClick() {
+  function handleItemSelect(info) {
+    setCurrentSelected(info);
+    setVisible((value) => !value);
+  }
+
+  function handleCloseSelected() {
     setVisible((value) => !value);
   }
 
   return (
     <>
-      <ExpandedItem visible={visible} handleClick={handleClick}></ExpandedItem>
+      <ExpandedItem
+        visible={visible}
+        handleCloseSelected={handleCloseSelected}
+        info={currentSelected}
+      ></ExpandedItem>
       <PupusaHeader />
 
       <HeroContainer>
@@ -25,9 +40,8 @@ function PupusaHome(props) {
       </HeroContainer>
 
       <BodyContainer>
-        <Menu handleClick={handleClick}></Menu>
+        <Menu handleItemSelect={handleItemSelect}></Menu>
       </BodyContainer>
-      <PupusaFooter />
     </>
   );
 }
@@ -68,7 +82,7 @@ const HeroContainer = styled.div`
 
 const BodyContainer = styled.div`
   background-color: #f7f5f4;
-  height: 60vh;
+  height: fit-content;
   width: 100%;
   padding: 1%;
 `;
