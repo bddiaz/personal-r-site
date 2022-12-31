@@ -30,7 +30,7 @@ function PupusaHeader(props) {
         </NavContainer>
 
         <OrderContainer>
-          <OrderButton type="button">YOUR CART</OrderButton>
+          <OrderButton type="button">YOUR CART {props.itemsTotal}</OrderButton>
         </OrderContainer>
       </HeaderContainer>
     </>

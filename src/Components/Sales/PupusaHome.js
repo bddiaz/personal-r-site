@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PupusaHeader from "./PupusaHeader.js";
@@ -17,6 +17,8 @@ function PupusaHome(props) {
     price: null,
   });
 
+  const [itemsTotal, setItemsTotal] = useState(0);
+
   const [currentOrder, setCurrentOrder] = useState([
     { index: 0, quantity: 0, item: "", cost: 0 },
     { index: 1, quantity: 0, item: "", cost: 0 },
@@ -26,8 +28,17 @@ function PupusaHome(props) {
     { index: 5, quantity: 0, item: "", cost: 0 },
   ]);
 
+  useEffect(() => {
+    let total = 0;
+    for (let i = 0; i++; i < currentOrder.length) {
+      total += currentOrder[i].quantity;
+    }
+    setItemsTotal(total);
+  }, []);
+
   function handleAddToCart(order) {
     let copy = currentOrder;
+    // console.log(itemsTotal);
 
     if (copy[order.index].quantity == 0) {
       let cost = order.count * 3;
@@ -49,7 +60,13 @@ function PupusaHome(props) {
       };
     }
     setCurrentOrder((prev) => copy);
-    console.log(currentOrder);
+    let total = 0;
+    for (let i = 0; i < currentOrder.length; i++) {
+      total += currentOrder[i].quantity;
+    }
+    console.log(total);
+    setItemsTotal((prev) => total);
+    //console.log(itemsTotal);
   }
 
   function handleItemSelect(info) {
@@ -69,7 +86,7 @@ function PupusaHome(props) {
         info={currentSelected}
         handleAddToCart={handleAddToCart}
       ></ExpandedItem>
-      <PupusaHeader />
+      <PupusaHeader itemsTotal={itemsTotal} />
 
       <HeroContainer>
         <HeroText>Pupusas de las hermanas Marias</HeroText>
