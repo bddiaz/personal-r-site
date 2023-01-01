@@ -6,9 +6,11 @@ import PupusaFooter from "./PupusaFooter.js";
 import Banner from "./assets/pupusas1.jpg";
 import Menu from "./PupusaMenu.js";
 import ExpandedItem from "./ExpandedItem.js";
+import Cart from "./Cart.js";
 
 function PupusaHome(props) {
   const [visible, setVisible] = useState(false);
+  const [viewCart, setViewCart] = useState(false);
   const [currentSelected, setCurrentSelected] = useState({
     title: null,
     image: null,
@@ -78,6 +80,10 @@ function PupusaHome(props) {
     setVisible((value) => !value);
   }
 
+  function handleViewCart() {
+    setViewCart((prev) => !prev);
+  }
+
   return (
     <>
       <ExpandedItem
@@ -86,7 +92,16 @@ function PupusaHome(props) {
         info={currentSelected}
         handleAddToCart={handleAddToCart}
       ></ExpandedItem>
-      <PupusaHeader itemsTotal={itemsTotal} />
+      <Cart
+        visible={viewCart}
+        handleClose={handleViewCart}
+        currentOrder={currentOrder}
+      ></Cart>
+      <PupusaHeader
+        visible={viewCart}
+        itemsTotal={itemsTotal}
+        handleViewCart={handleViewCart}
+      />
 
       <HeroContainer>
         <HeroText>Pupusas de las hermanas Marias</HeroText>

@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import Logo from "./assets/pngegg.png";
 
 function PupusaHeader(props) {
+  function handleViewCart() {
+    props.handleViewCart();
+  }
+
   return (
     <>
       <HeaderContainer>
@@ -30,7 +34,13 @@ function PupusaHeader(props) {
         </NavContainer>
 
         <OrderContainer>
-          <OrderButton type="button">YOUR CART {props.itemsTotal}</OrderButton>
+          <OrderButton
+            type="button"
+            onClick={handleViewCart}
+            visible={props.visible}
+          >
+            YOUR CART ({props.itemsTotal})
+          </OrderButton>
         </OrderContainer>
       </HeaderContainer>
     </>
@@ -58,7 +68,9 @@ const OrderButton = styled.button`
   color: #f7f2dd;
   border: none;
   padding: 2px;
+  z-index: 1;
   &:hover {
+    z-index: 1;
     transform: scale(105%);
     transition: all 0.1s;
   }
@@ -71,7 +83,7 @@ const StyledNavLink = styled(Link)`
 `;
 
 const HeaderContainer = styled.div`
-  height: 80px;
+  height: 7vh;
   width: 100%;
   background-color: #f7f5f4;
   display: flex;
