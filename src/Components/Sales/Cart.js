@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CartItem from "./CartItem.js";
 
 function Cart(props) {
   function handleClose() {
@@ -16,23 +17,33 @@ function Cart(props) {
         <OrderDisplay>
           {props.currentOrder.map((type) => (
             <>
-              <div>{type.item}</div>
-              {type.quantity > 0 ? <div>{type.quantity}</div> : <></>}
+              <CartItem itemInfo={type} />
             </>
           ))}
         </OrderDisplay>
+        <TotalBar>Your total is: ${props.total * 3}</TotalBar>
       </CartWindowContainer>
     </>
   );
 }
 
 export default Cart;
+const TotalBar = styled.div`
+  font-size: 23px;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-color: red
+  box-shadow: 0px -4px 2px rgba(50, 50, 50, 0.15);
+`;
 
 const OrderDisplay = styled.div`
   width: 100%;
   height: 80%;
-  padding: 2px;
-  background-color: blue;
+  padding: 2%;
+  // background-color: blue;
 `;
 
 const CartHeader = styled.div`

@@ -96,6 +96,7 @@ function PupusaHome(props) {
         visible={viewCart}
         handleClose={handleViewCart}
         currentOrder={currentOrder}
+        total={itemsTotal}
       ></Cart>
       <PupusaHeader
         visible={viewCart}
