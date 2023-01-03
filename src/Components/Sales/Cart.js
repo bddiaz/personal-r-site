@@ -6,6 +6,10 @@ function Cart(props) {
   function handleClose() {
     props.handleClose();
   }
+
+  function handleRemove(index) {
+    props.handleRemove(index);
+  }
   return (
     <>
       <ExpandedViewContainer
@@ -15,11 +19,18 @@ function Cart(props) {
       <CartWindowContainer visible={props.visible}>
         <CartHeader visible={props.visible}>Your Cart</CartHeader>
         <OrderDisplay>
-          {props.currentOrder.map((type) => (
-            <>
-              <CartItem itemInfo={type} />
-            </>
-          ))}
+          {props.total == 0 ? <div>Your Cart is Empty! </div> : <></>}
+          {props.currentOrder
+            .filter((item) => item.quantity > 0)
+            .map((item, i) => (
+              <>
+                <CartItem
+                  itemInfo={item}
+                  handleRemove={handleRemove}
+                  key={item.index}
+                />
+              </>
+            ))}
         </OrderDisplay>
         <TotalBar>Your total is: ${props.total * 3}</TotalBar>
       </CartWindowContainer>
@@ -42,7 +53,8 @@ const TotalBar = styled.div`
 const OrderDisplay = styled.div`
   width: 100%;
   height: 80%;
-  padding: 2%;
+  // padding: 2%;
+  // font-family: "Josefin Sans", sans-serif;
   // background-color: blue;
 `;
 

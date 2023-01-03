@@ -32,16 +32,16 @@ function PupusaHome(props) {
 
   useEffect(() => {
     let total = 0;
-    for (let i = 0; i++; i < currentOrder.length) {
+    // console.log("currentOrder.length");
+    for (let i = 0; i < currentOrder.length; i++) {
+      // console.log(i);
       total += currentOrder[i].quantity;
     }
     setItemsTotal(total);
-  }, []);
+  }, [currentOrder]);
 
   function handleAddToCart(order) {
     let copy = currentOrder;
-    // console.log(itemsTotal);
-
     if (copy[order.index].quantity == 0) {
       let cost = order.count * 3;
       copy[order.index] = {
@@ -66,7 +66,7 @@ function PupusaHome(props) {
     for (let i = 0; i < currentOrder.length; i++) {
       total += currentOrder[i].quantity;
     }
-    console.log(total);
+    //console.log(total);
     setItemsTotal((prev) => total);
     //console.log(itemsTotal);
   }
@@ -84,6 +84,12 @@ function PupusaHome(props) {
     setViewCart((prev) => !prev);
   }
 
+  function handleRemove(index) {
+    let copy = [...currentOrder];
+    copy[index] = { index: index, quantity: 0, item: "", cost: 0 };
+    console.log(copy);
+    setCurrentOrder((prev) => copy);
+  }
   return (
     <>
       <ExpandedItem
@@ -97,6 +103,7 @@ function PupusaHome(props) {
         handleClose={handleViewCart}
         currentOrder={currentOrder}
         total={itemsTotal}
+        handleRemove={handleRemove}
       ></Cart>
       <PupusaHeader
         visible={viewCart}
