@@ -30,15 +30,17 @@ function PupusaHome(props) {
     { index: 5, quantity: 0, item: "", cost: 0 },
   ]);
 
+  //useEffect for updating totals
+
   useEffect(() => {
     let total = 0;
-    // console.log("currentOrder.length");
     for (let i = 0; i < currentOrder.length; i++) {
-      // console.log(i);
       total += currentOrder[i].quantity;
     }
     setItemsTotal(total);
   }, [currentOrder]);
+
+  //Functions for expanded items
 
   function handleAddToCart(order) {
     let copy = currentOrder;
@@ -57,9 +59,7 @@ function PupusaHome(props) {
     for (let i = 0; i < currentOrder.length; i++) {
       total += currentOrder[i].quantity;
     }
-    //console.log(total);
     setItemsTotal((prev) => total);
-    //console.log(itemsTotal);
   }
 
   function handleItemSelect(info) {
@@ -70,6 +70,8 @@ function PupusaHome(props) {
   function handleCloseSelected() {
     setVisible((value) => !value);
   }
+
+  //Functions for working with Cart (adjusting items, continueing to checkout, etc.)
 
   function handleViewCart() {
     setViewCart((prev) => !prev);
@@ -139,6 +141,8 @@ function PupusaHome(props) {
       <BodyContainer>
         <Menu handleItemSelect={handleItemSelect}></Menu>
       </BodyContainer>
+
+      <PupusaFooter></PupusaFooter>
     </>
   );
 }
