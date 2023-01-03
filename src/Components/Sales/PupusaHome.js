@@ -12,11 +12,11 @@ function PupusaHome(props) {
   const [visible, setVisible] = useState(false);
   const [viewCart, setViewCart] = useState(false);
   const [currentSelected, setCurrentSelected] = useState({
-    title: null,
+    title: "",
     image: null,
-    description: null,
-    index: null,
-    price: null,
+    description: "",
+    index: 0,
+    price: 0,
   });
 
   const [itemsTotal, setItemsTotal] = useState(0);
@@ -42,25 +42,16 @@ function PupusaHome(props) {
 
   function handleAddToCart(order) {
     let copy = currentOrder;
-    if (copy[order.index].quantity == 0) {
-      let cost = order.count * 3;
-      copy[order.index] = {
-        index: order.index,
-        item: order.item,
-        quantity: order.count,
-        cost: cost,
-      };
-      cost = 0;
-    } else {
-      let cost = currentOrder[order.index].cost;
-      cost += order.count * 3;
-      copy[order.index] = {
-        index: order.index,
-        item: order.item,
-        quantity: order.count + currentOrder[order.index].quantity,
-        cost: cost,
-      };
-    }
+
+    let cost = currentOrder[order.index].cost;
+    cost += order.count * 3;
+    copy[order.index] = {
+      index: order.index,
+      item: order.item,
+      quantity: order.count + currentOrder[order.index].quantity,
+      cost: cost,
+    };
+
     setCurrentOrder((prev) => copy);
     let total = 0;
     for (let i = 0; i < currentOrder.length; i++) {
@@ -90,6 +81,33 @@ function PupusaHome(props) {
     console.log(copy);
     setCurrentOrder((prev) => copy);
   }
+
+  function addQuantity(index) {
+    let copy = [...currentOrder];
+    let newQuant = currentOrder[index].quantity + 1;
+    let newCost = newQuant * 3;
+    copy[index] = {
+      index: index,
+      quantity: newQuant,
+      item: currentOrder[index].item,
+      cost: newCost,
+    };
+    setCurrentOrder((prev) => copy);
+  }
+
+  function delQuantity(index) {
+    let copy = [...currentOrder];
+    let newQuant = currentOrder[index].quantity - 1;
+    let newCost = newQuant * 3;
+    copy[index] = {
+      index: index,
+      quantity: newQuant,
+      item: currentOrder[index].item,
+      cost: newCost,
+    };
+    setCurrentOrder((prev) => copy);
+  }
+
   return (
     <>
       <ExpandedItem
@@ -104,6 +122,8 @@ function PupusaHome(props) {
         currentOrder={currentOrder}
         total={itemsTotal}
         handleRemove={handleRemove}
+        addQuantity={addQuantity}
+        delQuantity={delQuantity}
       ></Cart>
       <PupusaHeader
         visible={viewCart}

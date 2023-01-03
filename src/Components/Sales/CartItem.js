@@ -7,9 +7,23 @@ function CartItem(props) {
     // console.log(index);
   }
 
+  function addQuantity() {
+    props.addQuantity(props.itemInfo.index);
+  }
+
+  function delQuantity() {
+    props.delQuantity(props.itemInfo.index);
+  }
+
   return (
     <CartItemContainer>
-      <QuantContainer>{props.itemInfo.quantity}</QuantContainer>
+      <QuantContainer>
+        {props.itemInfo.quantity}
+        <AdjustButtonContainer>
+          <AdjustQuantButton onClick={delQuantity}>-</AdjustQuantButton>
+          <AdjustQuantButton onClick={addQuantity}>+</AdjustQuantButton>
+        </AdjustButtonContainer>
+      </QuantContainer>
       <ItemInfoContainer>
         {props.itemInfo.item}
         <RemoveItemButton onClick={handleRemove}>Remove</RemoveItemButton>
@@ -21,6 +35,27 @@ function CartItem(props) {
 }
 export default CartItem;
 
+const AdjustButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const AdjustQuantButton = styled.button`
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #d1cfc9;
+  height: 20px;
+  width: 20px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
 const RemoveItemButton = styled.button`
   width: fit-content;
   background-color: white;
@@ -31,14 +66,16 @@ const RemoveItemButton = styled.button`
 `;
 
 const QuantContainer = styled.div`
-  width: 15%;
+  width: 20%;
   // background-color: purple;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const ItemInfoContainer = styled.div`
-  width: 60%;
+  width: 55%;
   // background-color: blue;
   display: flex;
   flex-direction: column;

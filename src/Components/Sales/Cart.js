@@ -28,6 +28,8 @@ function Cart(props) {
                   itemInfo={item}
                   handleRemove={handleRemove}
                   key={item.index}
+                  addQuantity={props.addQuantity}
+                  delQuantity={props.delQuantity}
                 />
               </>
             ))}
