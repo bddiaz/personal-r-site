@@ -83,6 +83,7 @@ const AddContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   color: #f7f5f4;
+  cursor: pointer;
 `;
 
 const OrderBarContainer = styled.div`

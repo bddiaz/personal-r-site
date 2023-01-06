@@ -83,7 +83,7 @@ const StyledNavLink = styled(Link)`
 `;
 
 const HeaderContainer = styled.div`
-  height: 7vh;
+  height: 10vh;
   width: 100%;
   background-color: #f7f5f4;
   display: flex;

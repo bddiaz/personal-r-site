@@ -78,14 +78,12 @@ const InfoSection = styled.div`
 `;
 
 const FooterContainer = styled.div`
-  height: 18vh;
+  height: 25vh;
   width: 100%;
-  background-color: #ab5911;
+  background-color: #ae0103;
   font-family: "Josefin Sans", sans-serif;
   color: #f7f5f4;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
-  // font-size: 30px;
 `;

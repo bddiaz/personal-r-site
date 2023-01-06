@@ -75,12 +75,12 @@ const CartHeader = styled.div`
 const CartWindowContainer = styled.div`
   text-decoration: none;
   font-family: "Josefin Sans", sans-serif;
-  width: 30vh;
+  width: 20vw;
   height: 100%;
   position: fixed;
-  right: ${(props) => (props.visible ? "0" : "-30vh")};
+  right: ${(props) => (props.visible ? "0" : "-20vw")};
   background-color: #f7f5f4;
-  transition: right 1.5s;
+  transition: right 0.5s;
   z-index: 999;
 `;
 

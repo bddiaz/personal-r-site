@@ -175,9 +175,10 @@ const HeroContainer = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
+  transition: background-size 0.5s ease-out;
   &:hover {
     background-size: 102%;
-    transition: background-size 1s;
+    // transition: background-size 1s ease-out;
   }
 `;
 
