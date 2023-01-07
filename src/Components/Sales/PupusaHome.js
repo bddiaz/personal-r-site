@@ -7,6 +7,9 @@ import Banner from "./assets/pupusas1.jpg";
 import Menu from "./PupusaMenu.js";
 import ExpandedItem from "./ExpandedItem.js";
 import Cart from "./Cart.js";
+import { Routes, Route } from "react-router-dom";
+import AboutUs from "./AboutUs.js";
+import Questions from "./Questions.js";
 
 function PupusaHome(props) {
   const [visible, setVisible] = useState(false);
@@ -29,7 +32,7 @@ function PupusaHome(props) {
     { index: 4, quantity: 0, item: "", cost: 0 },
     { index: 5, quantity: 0, item: "", cost: 0 },
   ]);
-
+  const [atHome, setAtHome] = useState(true);
   //useEffect for updating totals
 
   useEffect(() => {
@@ -133,14 +136,25 @@ function PupusaHome(props) {
         handleViewCart={handleViewCart}
       />
 
-      <HeroContainer>
-        <HeroText>Pupusas de las hermanas Marias</HeroText>
-        <HeroSubText> Hechas en casa </HeroSubText>
-      </HeroContainer>
+      <Routes>
+        <Route path="/About" element={<AboutUs />}></Route>
+        <Route path="/Questions" element={<Questions />}></Route>
+        <Route
+          path="/"
+          element={
+            <>
+              <HeroContainer>
+                <HeroText>Pupusas de las hermanas Marias</HeroText>
+                <HeroSubText> Hechas en casa </HeroSubText>
+              </HeroContainer>
 
-      <BodyContainer>
-        <Menu handleItemSelect={handleItemSelect}></Menu>
-      </BodyContainer>
+              <BodyContainer>
+                <Menu handleItemSelect={handleItemSelect}></Menu>
+              </BodyContainer>
+            </>
+          }
+        ></Route>
+      </Routes>
 
       <PupusaFooter></PupusaFooter>
     </>

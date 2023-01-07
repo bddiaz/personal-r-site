@@ -43,7 +43,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="pupusas" element={<PupusaHome />} />
+            <Route path="pupusas/*" element={<PupusaHome />} />
             <Route path="trips">
               <Route index={true} element={<Trips />} />
               <Route
