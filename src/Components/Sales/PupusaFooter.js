@@ -79,6 +79,7 @@ const InfoSection = styled.div`
 
 const FooterContainer = styled.div`
   height: 25vh;
+  position: relative;
   width: 100%;
   background-color: #ae0103;
   font-family: "Josefin Sans", sans-serif;

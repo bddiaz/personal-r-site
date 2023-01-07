@@ -21,20 +21,16 @@ function PupusaHeader(props) {
 
         <NavContainer>
           <Nav>
-            <NavItem>
-              <StyledNavLink to="/pupusas"> Menu </StyledNavLink>
-            </NavItem>
-            <NavItem>
-              <StyledNavLink to="/pupusas/About" relative="path">
-                About Us{" "}
-              </StyledNavLink>
-            </NavItem>
-            <NavItem>
-              <StyledNavLink to="/pupusas/Questions" relative="path">
-                {" "}
-                Questions{" "}
-              </StyledNavLink>
-            </NavItem>
+            <StyledNavLink to="/pupusas">
+              <NavItem> Menu </NavItem>
+            </StyledNavLink>
+
+            <StyledNavLink to="/pupusas/About" relative="path">
+              <NavItem>About Us</NavItem>
+            </StyledNavLink>
+            <StyledNavLink to="/pupusas/Questions" relative="path">
+              <NavItem>Questions</NavItem>
+            </StyledNavLink>
           </Nav>
         </NavContainer>
 
