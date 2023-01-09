@@ -23,13 +23,6 @@ function AboutUs(props) {
     setActiveIndex((prev) => (prev === 0 ? 3 : prev - 1));
   }
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => handleNext(), 5000);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
-
   return (
     <>
       <AboutUsContainer>
