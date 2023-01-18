@@ -10,6 +10,7 @@ import Cart from "./Cart.js";
 import { Routes, Route } from "react-router-dom";
 import AboutUs from "./AboutUs.js";
 import Questions from "./Questions.js";
+import Checkout from "./Checkout.js";
 
 function PupusaHome(props) {
   const [visible, setVisible] = useState(false);
@@ -122,6 +123,7 @@ function PupusaHome(props) {
         handleAddToCart={handleAddToCart}
       ></ExpandedItem>
       <Cart
+        active={itemsTotal > 0 ? true : false}
         visible={viewCart}
         handleClose={handleViewCart}
         currentOrder={currentOrder}
@@ -139,6 +141,16 @@ function PupusaHome(props) {
       <Routes>
         <Route path="/About" element={<AboutUs />}></Route>
         <Route path="/Questions" element={<Questions />}></Route>
+        <Route
+          path="/Checkout"
+          element={
+            <Checkout
+              currentOrder={currentOrder}
+              handleRemove={handleRemove}
+              total={itemsTotal}
+            />
+          }
+        ></Route>
         <Route
           path="/"
           element={

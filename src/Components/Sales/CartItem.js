@@ -93,6 +93,7 @@ const CartItemContainer = styled.div`
   font-size: 20px;
   display: flex;
   flex-direction: row;
+  background-color: #f7f5f4;
   justify-content: space-evenly;
   height: fit-content;
   width: 100%;
