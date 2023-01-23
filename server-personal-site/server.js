@@ -3,6 +3,7 @@ var cors = require('cors');
 const stripe = require('stripe')
 
 
+
 const app = express();
 app.use(cors())
 app.use(express.static("public"));

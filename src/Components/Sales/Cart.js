@@ -3,7 +3,7 @@ import styled from "styled-components";
 import CartItem from "./CartItem.js";
 import { useNavigate } from "react-router-dom";
 
-function Cart(props) {
+export default function Cart(props) {
   const navigate = useNavigate();
 
   function handleClose() {
@@ -14,9 +14,14 @@ function Cart(props) {
     props.handleRemove(index);
   }
 
-  function handleCheckoutClick() {
-    navigate("/pupusas/Checkout");
-  }
+  const checkout = async () => {
+    await fetch('http://localhost:4000/checkout', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({items: props.currentOrder})
+    })}
 
   return (
     <>
@@ -47,7 +52,7 @@ function Cart(props) {
           <CheckoutButton
             active={props.active}
             disabled={!props.active}
-            onClick={handleCheckoutClick}
+            onClick={checkout}
           >
             {" "}
             Checkout{" "}
@@ -58,7 +63,6 @@ function Cart(props) {
   );
 }
 
-export default Cart;
 
 const CheckoutButton = styled.button`
   width: 80%;
