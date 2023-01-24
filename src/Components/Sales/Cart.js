@@ -14,14 +14,19 @@ export default function Cart(props) {
     props.handleRemove(index);
   }
 
-  const checkout = async () => {
-    await fetch('http://localhost:4000/checkout', {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({items: props.currentOrder})
-    })}
+  function checkout() {
+    navigate("/pupusas/Review");
+    props.handleClose();
+  }
+
+  // const checkout = async () => {
+  //   await fetch('http://localhost:4000/checkout', {
+  //       method: "POST",
+  //       headers: {
+  //           'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({items: props.currentOrder})
+  //   })}
 
   return (
     <>
@@ -62,7 +67,6 @@ export default function Cart(props) {
     </>
   );
 }
-
 
 const CheckoutButton = styled.button`
   width: 80%;

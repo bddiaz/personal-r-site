@@ -142,12 +142,14 @@ function PupusaHome(props) {
         <Route path="/About" element={<AboutUs />}></Route>
         <Route path="/Questions" element={<Questions />}></Route>
         <Route
-          path="/Checkout"
+          path="/Review"
           element={
             <Checkout
               currentOrder={currentOrder}
               handleRemove={handleRemove}
               total={itemsTotal}
+              delQuantity={delQuantity}
+              addQuantity={addQuantity}
             />
           }
         ></Route>
