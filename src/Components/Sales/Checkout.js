@@ -20,7 +20,7 @@ function Checkout(props) {
 
   return (
     <>
-      <ReviewCotainer>
+      <ReviewContainer>
         <ReviewHeaderContainer>
           <ReviewHeader> Review Your Order</ReviewHeader>
         </ReviewHeaderContainer>
@@ -46,15 +46,15 @@ function Checkout(props) {
             {"<- "}Keep Shopping
           </StandardButton>
           Your total is: ${props.total * 3}
-          <StandardButton> Continue</StandardButton>
+          <StandardButton onClick={handleContinue}> Continue</StandardButton>
         </TotalContainer>
-      </ReviewCotainer>
+      </ReviewContainer>
     </>
   );
 }
 export default Checkout;
 
-const ReviewCotainer = styled.div`
+const ReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f7f5f4;
@@ -70,8 +70,9 @@ const ReviewHeaderContainer = styled.div`
   width: 100%;
   height: 11vh;
   min-height: 100px;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: center;
+  padding-left: 10%;
 `;
 
 const StandardButton = styled.button`

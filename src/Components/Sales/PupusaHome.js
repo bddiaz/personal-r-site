@@ -11,6 +11,7 @@ import { Routes, Route } from "react-router-dom";
 import AboutUs from "./AboutUs.js";
 import Questions from "./Questions.js";
 import Checkout from "./Checkout.js";
+import CostumerInfo from "./CostumerInfo.js";
 
 function PupusaHome(props) {
   const [visible, setVisible] = useState(false);
@@ -153,6 +154,7 @@ function PupusaHome(props) {
             />
           }
         ></Route>
+        <Route path ="/ReviewContd" element={<CostumerInfo/>}></Route>
         <Route
           path="/"
           element={
