@@ -78,7 +78,7 @@ const InfoSection = styled.div`
 `;
 
 const FooterContainer = styled.div`
-  height: 25vh;
+  height: fit-content;
   position: relative;
   width: 100%;
   background-color: #ae0103;
@@ -87,4 +87,5 @@ const FooterContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  padding: 4px;
 `;

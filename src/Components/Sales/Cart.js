@@ -19,14 +19,6 @@ export default function Cart(props) {
     props.handleClose();
   }
 
-  // const checkout = async () => {
-  //   await fetch('http://localhost:4000/checkout', {
-  //       method: "POST",
-  //       headers: {
-  //           'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({items: props.currentOrder})
-  //   })}
 
   return (
     <>

@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 
 const connection = mysql.createConnection({
-  host: "192.168.1.236",
+  host: "localhost",
   user: "remote",
   password: "password",
   database: "pupusas",
@@ -18,10 +18,3 @@ connection.connect((err) => {
   // })
 });
 
-// async function getOrders(){
-//     const [rows] = await pool.query('SELECT * FROM orders')
-//     console.log(rows)
-//     return rows
-// }
-
-// getOrders()

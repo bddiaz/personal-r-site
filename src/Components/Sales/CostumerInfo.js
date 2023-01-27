@@ -4,7 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { useNavigate } from "react-router-dom";
 
 export default function CostumerInfo(props) {
-
+    let date = new Date().toISOString();
+    date = date.slice(0,10);
+    
     const navigate = useNavigate();
 
     const firstNameRef = useRef(null);
@@ -13,6 +15,7 @@ export default function CostumerInfo(props) {
     const phoneNumberRef = useRef(null);
     const cashRef = useRef(null)
     const cardRef = useRef(null)
+    const dateRef = useRef(null)
 
     const [cashPayment, setCashPayment] = useState(false)
 
@@ -22,23 +25,32 @@ export default function CostumerInfo(props) {
 
     async function handleNext(e) {
         e.preventDefault()
-        //console.log(lastNameRef.current.value);
+        let placedDate = new Date();
+        //placedDate = placedDate.slice(0,10);
+        let paymentType = (cashPayment ? 'cash' : 'card');
+        console.log(dateRef.current.value)
+        let sale ={
+            first_name: firstNameRef.current.value,
+            last_name: lastNameRef.current.value,
+            email: emailRef.current.value,
+            phone_number: phoneNumberRef.current.value,
+            order_items: props.currentOrder,
+            payment_type: paymentType,
+            date_placed: placedDate,
+            due_date: dateRef.current.value
+        }
         if (cashPayment) {
             fetch('http://localhost:4000/newOrder', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(props.currentOrder)
-            })
-                .then(res => {
-                    console.log(res);
-                }).then(() => {
-                    navigate('/pupusas')
-                }
-
-                )
+                body: JSON.stringify(sale)
+            }).then(response => response.json()).then((data)=>{
+                //navigate(data.data)
+        });
         }
+        
     }
 
     return (
@@ -52,9 +64,13 @@ export default function CostumerInfo(props) {
                 <PIInput ref={lastNameRef} type="text" placeholder='Last Name ' required />
                 <PIInput ref={emailRef} type="text" placeholder='Email' required />
                 <PIInput ref={phoneNumberRef} type="text" placeholder='Phone Number' required />
+                <DateOptionInput>
 
+                    <label htmlFor="due-date">Date to pick up</label>
+                    <input ref = {dateRef} type="date" id="due-date" name="trip-start" defaultValue={date} min="2023-01-27" max="2023-12-31"/>
+                </DateOptionInput>
 
-                <Message> You may choose to pay online now or in cash when you pick up your order</Message>
+                <Message> You may choose to pay online now or in cash when you pick up your order</Message>     
                 <PaymentOptionInput>
                     <input ref={cardRef} onClick={updatePayment} type="radio" name="payment" id="card" value="card" defaultChecked />
                     <label htmlFor="card">Card</label>
@@ -65,6 +81,7 @@ export default function CostumerInfo(props) {
                     <label htmlFor="cash">Cash</label>
                 </PaymentOptionInput>
 
+
                 <StandardButton type='submit' value={cashPayment ? 'Place order' : 'Continue to Payment'} />
 
 
@@ -73,6 +90,15 @@ export default function CostumerInfo(props) {
         </Container>
     )
 }
+
+const DateOptionInput = styled.div`
+    font-family: "Josefin Sans", sans-serif;
+    display: flex;
+    width: 250px;
+    padding: 5px;
+    justify-content: space-around;
+/* background-color: aqua; */
+`
 
 const StandardButton = styled.input`
   width: 220px;
@@ -150,9 +176,11 @@ const ReviewHeaderContainer = styled.div`
 const Container = styled.div`
      display: flex;
      flex-direction: column;
-     height: 65vh;
+     height:fit-content;
      width: 100%;
      justify-content: center;
      align-items: start;
-     background-color : #F7F5F4;
+     background-color: #F7F5F4;
+     padding: 4px;
+     overflow-y: auto;
 `
