@@ -1,32 +1,71 @@
 import styled from 'styled-components';
-import { React, useState, useEffect } from 'react'
+import { React, useState, useEffect, useRef } from 'react'
+import userEvent from '@testing-library/user-event';
+import { useNavigate } from "react-router-dom";
 
-export default function CostumerInfo() {
+export default function CostumerInfo(props) {
+
+    const navigate = useNavigate();
+
+    const firstNameRef = useRef(null);
+    const lastNameRef = useRef(null);
+    const emailRef = useRef(null);
+    const phoneNumberRef = useRef(null);
+    const cashRef = useRef(null)
+    const cardRef = useRef(null)
+
+    const [cashPayment, setCashPayment] = useState(false)
+
+    function updatePayment() {
+        setCashPayment((prev) => !prev)
+    }
+
+    async function handleNext(e) {
+        e.preventDefault()
+        //console.log(lastNameRef.current.value);
+        if (cashPayment) {
+            fetch('http://localhost:4000/newOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(props.currentOrder)
+            })
+                .then(res => {
+                    console.log(res);
+                }).then(() => {
+                    navigate('/pupusas')
+                }
+
+                )
+        }
+    }
+
     return (
         <Container>
 
             <ReviewHeaderContainer>
                 <PIHeader> Enter your information</PIHeader>
             </ReviewHeaderContainer>
-            <FormContainer>
-                <PIInput type="text" placeholder='First Name' required />
-                <PIInput type="text" placeholder='Last Name ' required />
-                <PIInput type="text" placeholder='Email' required />
-                <PIInput type="text" placeholder='Phone Number' required />
+            <FormContainer onSubmit={handleNext}>
+                <PIInput ref={firstNameRef} type="text" placeholder='First Name' required />
+                <PIInput ref={lastNameRef} type="text" placeholder='Last Name ' required />
+                <PIInput ref={emailRef} type="text" placeholder='Email' required />
+                <PIInput ref={phoneNumberRef} type="text" placeholder='Phone Number' required />
 
 
                 <Message> You may choose to pay online now or in cash when you pick up your order</Message>
                 <PaymentOptionInput>
-                    <input type="radio" name="payment" id="card" value="card" checked />
-                    <label for="card">Card</label>
+                    <input ref={cardRef} onClick={updatePayment} type="radio" name="payment" id="card" value="card" defaultChecked />
+                    <label htmlFor="card">Card</label>
 
                 </PaymentOptionInput>
                 <PaymentOptionInput>
-                    <input type="radio" name="payment" id="cash" value="cash" />
-                    <label for="cash">Cash</label>
+                    <input ref={cashRef} onClick={updatePayment} type="radio" name="payment" id="cash" value="cash" />
+                    <label htmlFor="cash">Cash</label>
                 </PaymentOptionInput>
 
-                <StandardButton>Place Order</StandardButton>
+                <StandardButton type='submit' value={cashPayment ? 'Place order' : 'Continue to Payment'} />
 
 
 
@@ -35,7 +74,7 @@ export default function CostumerInfo() {
     )
 }
 
-const StandardButton = styled.button`
+const StandardButton = styled.input`
   width: 220px;
   background-color: #ae0103;
   text-align: center;
@@ -81,7 +120,7 @@ const PIInput = styled.input`
     margin: 10px 0;
 `;
 
-const FormContainer = styled.div`
+const FormContainer = styled.form`
     display: flex;
     flex-direction: column;
     height: 80%;

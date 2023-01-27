@@ -154,7 +154,7 @@ function PupusaHome(props) {
             />
           }
         ></Route>
-        <Route path ="/ReviewContd" element={<CostumerInfo/>}></Route>
+        <Route path="/ReviewContd" element={<CostumerInfo currentOrder={currentOrder} />}></Route>
         <Route
           path="/"
           element={
