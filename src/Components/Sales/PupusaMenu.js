@@ -73,7 +73,7 @@ function Menu(props) {
 
   return (
     <>
-      <MenuContainer>
+      <MenuContainer isOrdering={props.isOrdering}>
         <MenuItem
           itemInfo={menuItems[0]}
           handleItemSelect={handleItemSelect}
@@ -108,10 +108,11 @@ const MenuContainer = styled.div`
   height: 100%;
   width: 100%;
   padding: 1%;
-  display: grid;
+  display: ${(props) => (props.isOrdering ? 'grid' : 'none')};
   grid-template-columns: minmax(100px, 900px) minmax(100px, 900px);
   //grid-auto-rows: 200px;
   justify-content: center;
   align-content: center;
   gap: 30px;
+  transition: display 0.5s ease;
 `;
