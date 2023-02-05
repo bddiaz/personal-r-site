@@ -108,7 +108,7 @@ const MenuContainer = styled.div`
   height: 100%;
   width: 100%;
   padding: 1%;
-  display: ${(props) => (props.isOrdering ? 'grid' : 'none')};
+  display: grid;
   grid-template-columns: minmax(100px, 900px) minmax(100px, 900px);
   //grid-auto-rows: 200px;
   justify-content: center;

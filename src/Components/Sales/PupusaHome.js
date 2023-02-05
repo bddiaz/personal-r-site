@@ -163,9 +163,9 @@ function PupusaHome(props) {
                 <HeroText>Pupusas de las hermanas Marias</HeroText>
                 <HeroSubText> Hechas en casa </HeroSubText>
               </HeroContainer>
-              <MenuHider onClick={() => { setIsOrdering((prev) => !prev) }} isOrdering={isOrdering}>Start Order</MenuHider>
+              <MenuHider>Begin placing your order below</MenuHider>
               <BodyContainer>
-                <Menu handleItemSelect={handleItemSelect} isOrdering={isOrdering}></Menu>
+                <Menu handleItemSelect={handleItemSelect} ></Menu>
               </BodyContainer>
             </>
           }
@@ -179,16 +179,15 @@ function PupusaHome(props) {
 export default PupusaHome;
 
 const MenuHider = styled.div`
-  height:  ${(props) => (props.isOrdering ? '0px' : '120px')};
+  height:120px;
   width: 100%;
   font-family: "Josefin Sans", sans-serif;
   font-size: 30px;
-  background-color: #AE0103;
-  display: ${(props) => (props.isOrdering ? 'none' : 'flex')};
+  background-color: #D2C79B;
+  display: flex;
   justify-content: center;
   align-items: center;
   color: #F7F5F4;
-  transition: all 1s ease;
 `
 
 const HeroSubText = styled.div`
