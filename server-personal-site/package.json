@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --devtool eval --progress --colors --hot",

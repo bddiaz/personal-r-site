@@ -104,7 +104,8 @@ const CheckoutOrderContainer = styled.div`
   width: 100%;
   height: 65vh;
   justify-content: start;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
   padding: 2px;
+  
 `;

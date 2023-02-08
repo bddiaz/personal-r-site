@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function CostumerInfo(props) {
     let date = new Date().toISOString();
-    date = date.slice(0,10);
-    
+    date = date.slice(0, 10);
+
     const navigate = useNavigate();
 
     const firstNameRef = useRef(null);
@@ -23,13 +23,13 @@ export default function CostumerInfo(props) {
         setCashPayment((prev) => !prev)
     }
 
-    async function handleNext(e) {
-        e.preventDefault()
+    async function submitCashOrder() {
+
         let placedDate = new Date();
         //placedDate = placedDate.slice(0,10);
         let paymentType = (cashPayment ? 'cash' : 'card');
-        console.log(dateRef.current.value)
-        let sale ={
+        // console.log(dateRef.current.value)
+        let sale = {
             first_name: firstNameRef.current.value,
             last_name: lastNameRef.current.value,
             email: emailRef.current.value,
@@ -40,18 +40,34 @@ export default function CostumerInfo(props) {
             due_date: dateRef.current.value
         }
         if (cashPayment) {
-            fetch('http://localhost:4000/newOrder', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(sale)
-            }).then(response => response.json()).then((data)=>{
-                //navigate(data.data)
-        });
+            try {
+
+                const response = await (fetch('http://localhost:4000/newOrder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(sale)
+                }))
+
+                const data = await response.json()
+                // console.log(data)
+                return response
+            } catch (err) {
+                console.log(err)
+            }
         }
-        
     }
+
+
+    function handleNext(e) {
+        e.preventDefault()
+
+        submitCashOrder()
+
+    }
+
+
 
     return (
         <Container>
@@ -67,10 +83,10 @@ export default function CostumerInfo(props) {
                 <DateOptionInput>
 
                     <label htmlFor="due-date">Date to pick up</label>
-                    <input ref = {dateRef} type="date" id="due-date" name="trip-start" defaultValue={date} min="2023-01-27" max="2023-12-31"/>
+                    <input ref={dateRef} type="date" id="due-date" name="trip-start" defaultValue={date} min="2023-01-27" max="2023-12-31" />
                 </DateOptionInput>
 
-                <Message> You may choose to pay online now or in cash when you pick up your order</Message>     
+                <Message> You may choose to pay online now or in cash when you pick up your order</Message>
                 <PaymentOptionInput>
                     <input ref={cardRef} onClick={updatePayment} type="radio" name="payment" id="card" value="card" defaultChecked />
                     <label htmlFor="card">Card</label>

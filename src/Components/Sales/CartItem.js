@@ -89,13 +89,15 @@ const PriceContainer = styled.div`
 `;
 
 const CartItemContainer = styled.div`
-  padding-top: 3%;
+  /* padding-top: 3%; */
   font-size: 20px;
   display: flex;
   flex-direction: row;
   background-color: #f7f5f4;
   justify-content: space-evenly;
   height: fit-content;
-  width: 100%;
+  width: 90%;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.04); 
+  padding: 1%;
   // background-color: red;
 `;
