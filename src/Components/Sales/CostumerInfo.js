@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { React, useState, useEffect, useRef } from 'react'
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 import { useNavigate } from "react-router-dom";
 
 export default function CostumerInfo(props) {
@@ -42,7 +42,7 @@ export default function CostumerInfo(props) {
         if (cashPayment) {
             try {
 
-                const response = await (fetch('http://localhost:4000/newOrder', {
+                const response = await (fetch('http://localhost:4000/newCashOrder', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -52,9 +52,9 @@ export default function CostumerInfo(props) {
 
                 const data = await response.json()
                 // console.log(data)
-                return response
+                return data
             } catch (err) {
-                console.log(err)
+                console.log('order did not get processed and no receipt was created')
             }
         }
     }
@@ -63,7 +63,14 @@ export default function CostumerInfo(props) {
     function handleNext(e) {
         e.preventDefault()
 
-        submitCashOrder()
+        let receipt = submitCashOrder()
+        receipt.then((response) => {
+            console.log(response.data)
+        }
+        ).catch((err) => {
+            console.log(err)
+        }
+        )
 
     }
 

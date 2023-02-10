@@ -1,4 +1,4 @@
-import { handleAddCostumer, handleAddOrderItems, handleAddOrder } from './databaseQueries.js';
+import { handleAddCostumer, handleAddOrderItems, handleAddOrder, handleAddReceipt } from './databaseQueries.js';
 import express from 'express'
 import cors from 'cors'
 // const cors = require('cors');
@@ -13,16 +13,17 @@ app.use(express.json())
 
 
 
-app.post('/newOrder', async (req, res) => {
-  // console.log(req.body)
-  // const order_items = req.body.order_items;
-  // console.log('tsls')
+app.post('/newCashOrder', async (req, res) => {
   try {
     const costumerId = await handleAddCostumer(req)
-    const orderId = await handleAddOrderItems(req.body.order_items)
-    // const result = await handleAddOrder(req, costumerId, orderId)
-    // console.log('costumer id is: ', costumerId)
-    // console.log('order id is: ', orderId)
+    const orderItemsId = await handleAddOrderItems(req.body.order_items)
+    const orderId = await handleAddOrder(req, orderItemsId, costumerId)
+    const receiptId = await handleAddReceipt(orderId, costumerId, 'cash', 'pending')
+    console.log('costumer id is: ', costumerId)
+    console.log('order items id is: ', orderId)
+    console.log('sale id is: ', orderId)
+    console.log('receipt id is: ', receiptId)
+    res.send({ data: receiptId })
   } catch (err) {
     res.send({ data: 'fails' })
     console.log('err is: ', err)
