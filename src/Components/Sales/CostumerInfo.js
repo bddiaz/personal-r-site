@@ -39,38 +39,80 @@ export default function CostumerInfo(props) {
             date_placed: placedDate,
             due_date: dateRef.current.value
         }
-        if (cashPayment) {
-            try {
+        try {
 
-                const response = await (fetch('http://localhost:4000/newCashOrder', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(sale)
-                }))
+            const response = await (fetch('http://localhost:4000/newCashOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(sale)
+            }))
 
-                const data = await response.json()
-                // console.log(data)
-                return data
-            } catch (err) {
-                console.log('order did not get processed and no receipt was created')
-            }
+            const data = await response.json()
+            // console.log(data)
+            return data
+        } catch (err) {
+            console.log('order did not get processed and no receipt was created')
         }
+    }
+
+
+    async function handleCardPayment() {
+        let placedDate = new Date();
+        //placedDate = placedDate.slice(0,10);
+        let paymentType = (cashPayment ? 'cash' : 'card');
+        // console.log(dateRef.current.value)
+        let sale = {
+            first_name: firstNameRef.current.value,
+            last_name: lastNameRef.current.value,
+            email: emailRef.current.value,
+            phone_number: phoneNumberRef.current.value,
+            order_items: props.currentOrder,
+            payment_type: paymentType,
+            date_placed: placedDate,
+            due_date: dateRef.current.value
+        }
+        try {
+
+            const response = await (fetch('http://localhost:4000/newCardOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(sale)
+            }))
+
+            const data = await response.json()
+            console.log(data)
+            return data
+        } catch (err) {
+            console.log('order did not get processed and no receipt was created')
+        }
+
     }
 
 
     function handleNext(e) {
         e.preventDefault()
+        if (cashPayment) {
+            let receipt = submitCashOrder()
+            receipt.then((response) => {
+                console.log(response.data)
+            }).catch((err) => {
+                console.log(err)
+            }
+            )
+        } else {
+            console.log('hsfljfs')
+            let cardReceipt = handleCardPayment()
+            cardReceipt.then(response => {
+                console.log(response)
+            }).catch(e => {
+                console.error(e.error)
+            })
+        }
 
-        let receipt = submitCashOrder()
-        receipt.then((response) => {
-            console.log(response.data)
-        }
-        ).catch((err) => {
-            console.log(err)
-        }
-        )
 
     }
 
